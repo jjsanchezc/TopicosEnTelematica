@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+message ProductAdditionToCart{
+    int32 id_product = 1;
+}
+
+message ProductAdditionToCartResponse{
+    int32 status_code = 1;
+}
+
+service ProductService{
+    rpc AddProduct(ProductAdditionToCart) returns (ProductAdditionToCartResponse) {}
+}

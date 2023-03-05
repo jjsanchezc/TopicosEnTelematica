@@ -1,0 +1,42 @@
+from concurrent import futures
+import logging
+import grpc
+import shopping_cart_service_pb2
+import shopping_cart_service_pb2_grpc
+
+import inventory_service_pb2_grpc
+import inventory_service_pb2
+import multiprocessing
+
+HOST = '[::]:8080'
+
+class ProductService(shopping_cart_service_pb2_grpc.ProductServiceServicer):
+    def AddProduct(self, request, context):
+        print('Producto añadido:\n ' + str(request))
+        return shopping_cart_service_pb2.ProductAdditionToCartResponse(status_code=1)
+
+
+class ProductAvailability(inventory_service_pb2_grpc.ProductAvailabilityServicer):
+    def SearchProduct(self, request, context):
+        print(f'Producto {str(request)} Encontrado')
+        return inventory_service_pb2.ProductAvailabilityResponse(status_code=1)
+
+def serve():
+    # First, the user have to define if he wants to shearch for stock or add to the shoppingcart
+    servidor = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    
+    #Add shoppingcart to server
+    shopping_cart_service_pb2_grpc.add_ProductServiceServicer_to_server(ProductService(), servidor)
+    
+    #Add Inventory to server
+    inventory_service_pb2_grpc.add_ProductAvailabilityServicer_to_server(ProductAvailability(), servidor)
+    
+    print('server 1 running')
+    servidor.add_insecure_port(HOST)
+    servidor.start()
+    servidor.wait_for_termination()
+
+
+if __name__ == "__main__":
+    serv = multiprocessing.Process(target=serve)
+    serv.start()
