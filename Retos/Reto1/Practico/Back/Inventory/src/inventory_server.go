@@ -19,7 +19,7 @@ type server struct {
 }
 
 func (s *server) SearchProduct(ctx context.Context, in *pb.ProductToSearch) (*pb.ProductAvailabilityResponse, error) {
-	fmt.Println(in.GetIdProduct(), "este es el numero del id del producto")
+	fmt.Println(in.GetIdProduct(), "este es el numero del id del producto que recibe para la busqueda")
 	if in.GetIdProduct() == 2 {
 		return &pb.ProductAvailabilityResponse{StatusCode: false}, nil
 	}
