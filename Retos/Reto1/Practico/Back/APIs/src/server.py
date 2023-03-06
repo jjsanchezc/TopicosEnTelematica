@@ -21,6 +21,7 @@ class ProductService(shopping_cart_service_pb2_grpc.ProductServiceServicer):
         return shopping_cart_service_pb2.ProductAdditionToCartResponse(status_code=1)
 
 
+#TODAVIA SIGUE MANDANDO SOLO EL 1
 class ProductAvailability(inventory_service_pb2_grpc.ProductAvailabilityServicer):
     def SearchProduct(self, request, context):
         print('este es el request que le entra '+ str(request.id_product))
@@ -45,7 +46,7 @@ def serve():
     #Add Inventory to server
     inventory_service_pb2_grpc.add_ProductAvailabilityServicer_to_server(ProductAvailability(), servidor)
     
-    print('server 1 running')
+    print('APIs Server running')
     servidor.add_insecure_port(HOST)
     servidor.start()
     servidor.wait_for_termination()
