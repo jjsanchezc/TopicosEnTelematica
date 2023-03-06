@@ -23,7 +23,7 @@ def run():
             stub =  inventory_service_pb2_grpc.ProductAvailabilityStub(channel)
             producto_id=int(input('por favor seleccione el producto a buscar del 1-10\n'))
             try:
-                stub.SearchProduct(inventory_service_pb2.ProductAvailabilityResponse(status_code=3))
+                stub.SearchProduct(inventory_service_pb2.ProductToSearch(id_product=3))
             except:
                 print('ERROR EN EL CLIENTE')
     

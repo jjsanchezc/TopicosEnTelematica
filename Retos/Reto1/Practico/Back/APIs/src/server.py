@@ -11,6 +11,15 @@ HOST = 'localhost:3000'
 
 class ProductService(shopping_cart_service_pb2_grpc.ProductServiceServicer):
     def AddProduct(self, request, context):
+        '''In this method, user send the number id of the product they want to add to their shopping carr
+
+        Args:
+            request (_type_): this is the product id they want to add to the shopping cart
+            context (_type_): this is used by gRPC
+
+        Returns:
+            _type_: There are 2 ways of return, product added to the shopping cart or product out of stock and couldn't add it 
+        '''
         with grpc.insecure_channel('localhost:50052') as channel:
             stub =  shopping_cart_service_pb2_grpc.ProductServiceStub(channel)
             try:
@@ -27,12 +36,12 @@ class ProductAvailability(inventory_service_pb2_grpc.ProductAvailabilityServicer
         print('este es el request que le entra '+ str(request.id_product))
         with grpc.insecure_channel('localhost:50051') as channel:
             stub =  inventory_service_pb2_grpc.ProductAvailabilityStub(channel)
-            try:
-                ans=stub.SearchProduct(inventory_service_pb2.ProductAvailabilityResponse(status_code=request.id_product))
-                
+            
+            ans=stub.SearchProduct(inventory_service_pb2.ProductToSearch(id_product=request.id_product))
+            if ans.status_code == True:
                 print(f'Producto {str(request)} Encontrado')
-            except:
-                print('no hay pa inventario')
+            else:
+                print('no hay se encuentra disponible')
         
         return inventory_service_pb2.ProductAvailabilityResponse(status_code=1)
 
