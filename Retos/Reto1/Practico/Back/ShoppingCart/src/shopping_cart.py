@@ -10,7 +10,7 @@ import inventory_shopping_cart_service_pb2_grpc
 import inventory_shopping_cart_service_pb2
 
 def run():
-    with grpc.insecure_channel('localhost:8080') as channel:
+    with grpc.insecure_channel('localhost:50052') as channel:
         stub =  shopping_cart_service_pb2_grpc.ProductServiceStub(channel)
         producto_id=int(input('por favor seleccione el producto del 1-10\n'))
         try:

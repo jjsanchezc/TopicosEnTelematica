@@ -3,6 +3,7 @@ package main
 import (
 	pb "InventoryMod/ProductAvailability"
 	"context"
+	"fmt"
 	"log"
 	"net"
 
@@ -18,6 +19,7 @@ type server struct {
 }
 
 func (s *server) SearchProduct(ctx context.Context, in *pb.ProductToSearch) (*pb.ProductAvailabilityResponse, error) {
+	fmt.Println(in.GetIdProduct(), "este es el numero del id del producto")
 	if in.GetIdProduct() == 2 {
 		return &pb.ProductAvailabilityResponse{StatusCode: false}, nil
 	}

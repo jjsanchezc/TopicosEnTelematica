@@ -10,7 +10,7 @@ import inventory_service_pb2_grpc
 import inventory_service_pb2
 
 def run():
-    with grpc.insecure_channel('localhost:8080') as channel:
+    with grpc.insecure_channel('localhost:50052') as channel:
         stub =  shopping_cart_service_pb2_grpc.ProductServiceStub(channel)
         producto_id=int(input('por favor seleccione el producto del 1-10\n'))
         
@@ -18,8 +18,7 @@ def run():
         with grpc.insecure_channel('localhost:50051') as channel:
             stub2 =inventory_service_pb2_grpc.ProductAvailabilityStub(channel)
             product_available=stub2.SearchProduct(inventory_service_pb2.ProductToSearch(id_product=producto_id))
-            print(type(product_available))
-            print(product_available.status_code)
+
         if product_available.status_code==False:
             print('No hay mas stock')
         else:

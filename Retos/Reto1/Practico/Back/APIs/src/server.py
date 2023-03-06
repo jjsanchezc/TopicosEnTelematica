@@ -3,22 +3,36 @@ import logging
 import grpc
 import shopping_cart_service_pb2
 import shopping_cart_service_pb2_grpc
-
 import inventory_service_pb2_grpc
 import inventory_service_pb2
 import multiprocessing
 
-HOST = '[::]:8080'
+HOST = 'localhost:3000'
 
 class ProductService(shopping_cart_service_pb2_grpc.ProductServiceServicer):
     def AddProduct(self, request, context):
-        print('Producto añadido:\n ' + str(request))
+        with grpc.insecure_channel('localhost:50052') as channel:
+            stub =  shopping_cart_service_pb2_grpc.ProductServiceStub(channel)
+            try:
+                stub.AddProduct(shopping_cart_service_pb2.ProductAdditionToCartResponse(status_code=request.id_product))
+                print('Producto añadido:\n ' + str(request))
+            except:
+                print('no se pudo añadir al carrito')
         return shopping_cart_service_pb2.ProductAdditionToCartResponse(status_code=1)
 
 
 class ProductAvailability(inventory_service_pb2_grpc.ProductAvailabilityServicer):
     def SearchProduct(self, request, context):
-        print(f'Producto {str(request)} Encontrado')
+        print('este es el request que le entra '+ str(request.id_product))
+        with grpc.insecure_channel('localhost:50051') as channel:
+            stub =  inventory_service_pb2_grpc.ProductAvailabilityStub(channel)
+            try:
+                ans=stub.SearchProduct(inventory_service_pb2.ProductAvailabilityResponse(status_code=request.id_product))
+                
+                print(f'Producto {str(request)} Encontrado')
+            except:
+                print('no hay pa inventario')
+        
         return inventory_service_pb2.ProductAvailabilityResponse(status_code=1)
 
 def serve():
