@@ -20,10 +20,10 @@ class ProductService(shopping_cart_service_pb2_grpc.ProductServiceServicer):
             print(product_available.status_code)
         if product_available.status_code==False:
             print('No hay mas stock')
-            
+            return shopping_cart_service_pb2.ProductAdditionToCartResponse(status_code=False)
         else:
             print('Producto añadido:\n ' + str(request))
-            return shopping_cart_service_pb2.ProductAdditionToCartResponse(status_code=1)
+            return shopping_cart_service_pb2.ProductAdditionToCartResponse(status_code=True)
 
 
 def server():
