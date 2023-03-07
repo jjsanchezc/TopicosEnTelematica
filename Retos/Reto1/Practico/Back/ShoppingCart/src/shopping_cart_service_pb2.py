@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1bshopping_cart_service.proto\"+\n\x15ProductAdditionToCart\x12\x12\n\nid_product\x18\x01 \x01(\x05\"4\n\x1dProductAdditionToCartResponse\x12\x13\n\x0bstatus_code\x18\x01 \x01(\x05\x32X\n\x0eProductService\x12\x46\n\nAddProduct\x12\x16.ProductAdditionToCart\x1a\x1e.ProductAdditionToCartResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1bshopping_cart_service.proto\"+\n\x15ProductAdditionToCart\x12\x12\n\nid_product\x18\x01 \x01(\x05\"4\n\x1dProductAdditionToCartResponse\x12\x13\n\x0bstatus_code\x18\x01 \x01(\x05\"K\n\x15\x44\x65leteProductFromCart\x12\x12\n\nid_product\x18\x01 \x01(\x05\x12\x13\n\x06reason\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\t\n\x07_reason\"f\n\x1cProductDeletedInCartResponse\x12\x13\n\x0bstatus_code\x18\x01 \x01(\x08\x12\x12\n\nid_product\x18\x02 \x01(\x05\x12\x1d\n\x15product_quantity_left\x18\x03 \x01(\x05\x32\xa2\x01\n\x0eProductService\x12\x46\n\nAddProduct\x12\x16.ProductAdditionToCart\x1a\x1e.ProductAdditionToCartResponse\"\x00\x12H\n\rDeleteProduct\x12\x16.DeleteProductFromCart\x1a\x1d.ProductDeletedInCartResponse\"\x00\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'shopping_cart_service_pb2', globals())
@@ -24,6 +24,10 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _PRODUCTADDITIONTOCART._serialized_end=74
   _PRODUCTADDITIONTOCARTRESPONSE._serialized_start=76
   _PRODUCTADDITIONTOCARTRESPONSE._serialized_end=128
-  _PRODUCTSERVICE._serialized_start=130
-  _PRODUCTSERVICE._serialized_end=218
+  _DELETEPRODUCTFROMCART._serialized_start=130
+  _DELETEPRODUCTFROMCART._serialized_end=205
+  _PRODUCTDELETEDINCARTRESPONSE._serialized_start=207
+  _PRODUCTDELETEDINCARTRESPONSE._serialized_end=309
+  _PRODUCTSERVICE._serialized_start=312
+  _PRODUCTSERVICE._serialized_end=474
 # @@protoc_insertion_point(module_scope)
