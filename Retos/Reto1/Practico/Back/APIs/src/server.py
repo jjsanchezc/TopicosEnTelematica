@@ -1,7 +1,4 @@
-#este deberia estar en la branch nueva
-
-
-
+from flask import Flask, request, jsonify
 from concurrent import futures
 import logging
 import grpc
@@ -11,60 +8,41 @@ import inventory_service_pb2_grpc
 import inventory_service_pb2
 import multiprocessing
 
-HOST = 'localhost:3000'
+app = Flask(__name__)
 
-class ProductService(shopping_cart_service_pb2_grpc.ProductServiceServicer):
-    def AddProduct(self, request, context):
-        '''In this method, user send the number id of the product they want to add to their shopping carr
+# Configuración de los endpoints de los microservicios
+inventory_channel = 'localhost:50051'
+shoppingcart_channel = 'localhost:50052'
 
-        Args:
-            request (_type_): this is the product id they want to add to the shopping cart
-            context (_type_): this is used by gRPC
+# Creación de los canales de comunicación para cada microservicio
+inventory_port = grpc.insecure_channel(inventory_channel)
+shoppingcart_port = grpc.insecure_channel(shoppingcart_channel)
 
-        Returns:
-            _type_: There are 2 ways of return, product added to the shopping cart or product out of stock and couldn't add it 
-        '''
-        with grpc.insecure_channel('localhost:50052') as channel:
-            stub =  shopping_cart_service_pb2_grpc.ProductServiceStub(channel)
-            try:
-                stub.AddProduct(shopping_cart_service_pb2.ProductAdditionToCartResponse(status_code=request.id_product))
-                print('Producto añadido:\n ' + str(request))
-            except:
-                print('no se pudo añadir al carrito')
-        return shopping_cart_service_pb2.ProductAdditionToCartResponse(status_code=1)
+# Creación de los stubs para cada microservicio
+inventory_stub = inventory_service_pb2_grpc.ProductAvailabilityStub(inventory_port)
+shoppingcart_stub = shopping_cart_service_pb2_grpc.ProductServiceStub(shoppingcart_port)
 
-
-#TODAVIA SIGUE MANDANDO SOLO EL 1
-class ProductAvailability(inventory_service_pb2_grpc.ProductAvailabilityServicer):
-    def SearchProduct(self, request, context):
-        print('este es el request que le entra '+ str(request.id_product))
-        with grpc.insecure_channel('localhost:50051') as channel:
-            stub =  inventory_service_pb2_grpc.ProductAvailabilityStub(channel)
-            
-            ans=stub.SearchProduct(inventory_service_pb2.ProductToSearch(id_product=request.id_product))
-            if ans.status_code == True:
-                print(f'Producto {str(request)} Encontrado')
-            else:
-                print('no hay se encuentra disponible')
-        
-        return inventory_service_pb2.ProductAvailabilityResponse(status_code=1)
-
-def serve():
-    # First, the user have to define if he wants to shearch for stock or add to the shoppingcart
-    servidor = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+@app.route('/ProductToSearch', methods=['POST'])
+def inventory():
+    # store the postman request
+    data = request.json
     
-    #Add shoppingcart to server
-    shopping_cart_service_pb2_grpc.add_ProductServiceServicer_to_server(ProductService(), servidor)
-    
-    #Add Inventory to server
-    inventory_service_pb2_grpc.add_ProductAvailabilityServicer_to_server(ProductAvailability(), servidor)
-    
-    print('APIs Server running')
-    servidor.add_insecure_port(HOST)
-    servidor.start()
-    servidor.wait_for_termination()
+    ans=inventory_stub.SearchProduct(inventory_service_pb2.ProductToSearch(id_product=int(data["id_product"])))
+    if ans.status_code==True:
+        return "Se agregó correctamente el producto "+ str(data["id_product"])
+    else:
+        return "No hay stock del producto "+ str(data["id_product"])
 
+@app.route('/ShoppingCartService', methods=['POST'])
+def shoppingcart():
+    # store the postman request
+    data = request.json
+    sc=shoppingcart_stub.AddProduct(shopping_cart_service_pb2.ProductAdditionToCartResponse(status_code=int(data["id_product"])))
+    print(str(sc.status_code)+"este es el status code")
+    if sc.status_code==0:
+        return f"No se pudo añadir el producto {str(data['id_product'])} ya que no hay stock del producto "
+    else:
+        return f"Se añadió correctamente el producto {str(data['id_product'])} al carrito"
 
-if __name__ == "__main__":
-    serv = multiprocessing.Process(target=serve)
-    serv.start()
+if __name__ == '__main__':
+    app.run(debug=True)
