@@ -38,7 +38,6 @@ def shoppingcart_addproduct():
     # store the postman request
     data = request.json
     sc=shoppingcart_stub.AddProduct(shopping_cart_service_pb2.ProductAdditionToCartResponse(status_code=int(data["id_product"])))
-    print(str(sc.status_code)+"este es el status code")
     if sc.status_code==0:
         return f"No se pudo añadir el producto {str(data['id_product'])} ya que no hay stock del producto "
     else:

@@ -17,7 +17,6 @@ class ProductService(shopping_cart_service_pb2_grpc.ProductServiceServicer):
         with grpc.insecure_channel('localhost:50051') as channel:
             stub2 =inventory_shopping_cart_service_pb2_grpc.ProductAvailabilityStub(channel)
             product_available=stub2.SearchProduct(inventory_shopping_cart_service_pb2.ProductToSearch(id_product=request.id_product))
-            print(product_available.status_code)
         if product_available.status_code==False:
             print('No hay mas stock')
             return shopping_cart_service_pb2.ProductAdditionToCartResponse(status_code=False)
