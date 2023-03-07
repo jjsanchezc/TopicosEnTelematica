@@ -25,6 +25,15 @@ class ProductService(shopping_cart_service_pb2_grpc.ProductServiceServicer):
             print('Producto añadido:\n ' + str(request))
             return shopping_cart_service_pb2.ProductAdditionToCartResponse(status_code=True)
 
+    def DeleteProduct(self, request, context):
+        print('recibi orden para eliminar del carrito al producto', str(request.id_product))
+        if str(request.reason)!="":
+            print(f'razón del cliente: "{str(request.reason)}"')
+        if request.id_product==1 or request.id_product==2:
+            print('no tienes este producto en tu carro')
+            return shopping_cart_service_pb2.ProductDeletedInCartResponse(status_code=False,id_product=request.id_product,product_quantity_left=0)
+        else:
+            return shopping_cart_service_pb2.ProductDeletedInCartResponse(status_code=True,id_product=request.id_product,product_quantity_left=2)
 
 def server():
     servidor = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
