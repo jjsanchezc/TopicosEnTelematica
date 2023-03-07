@@ -8,6 +8,16 @@ message ProductAdditionToCartResponse{
     int32 status_code = 1;
 }
 
+message DeleteProductFromCart{
+    int32 id_product=1;
+    optional string reason=2;
+}
+
+message ProductDeletedInCartResponse{
+    int32 id_product=1;
+    int32 product_quantity_left=2;
+}
 service ProductService{
     rpc AddProduct(ProductAdditionToCart) returns (ProductAdditionToCartResponse) {}
+    rpc DeleteProduct(DeleteProductFromCart) returns (ProductDeletedInCartResponse){}
 }
