@@ -60,18 +60,65 @@ Hay un entorno virtual donde dentro de este se encuentran las respectivas carpet
 ## En este punto por favor describa de igual forma, que patrones logró implementar.
 
 ## Resultados logrados
- Por favor describa claramente en puntos de lo solicitado logró alcanzar los objetivos propuestos. De igual forma, indique cuales objetivos no alcanzo a desarrollar. 
+ Por favor describa claramente en puntos de lo solicitado logró alcanzar los objetivos propuestos. De igual forma, indique cuales objetivos no alcanzo a desarrollar. <br>
+   Al final del dia se logró implementar de forma correcta los microservicios y la api, se logró un resultado muy basico pero funcional. Ya que lo principal era hacer la conexión, la implementeación de los metodos de cada microservicio no están muy detallados. La api recibe request del postman y dependiendo del producto que pidiese, le daba una repuesta predeteminada (ya que no se tenian bases de datos para poder hacer la relación real).<br>
+   Algo importante es que se intentó usar algunas funciones del proto3 pero que al momento de implementarlo fue de una forma muy rustica (pero funcional), ejemplo de esto es en el .proto de shopping_cart_service en la carpeta APIs, se intentó implementar un campo opcional en los mensajes pero al momento de invocarlo en el servidor no sabia como implementar ese optional y me tocó hacer un if else para poder que me funcionara.<br>
 
 ***
 
 <div id='Desarrollo'/>
 
 ## Descripción técnica de la solución implementada: 
-Por favor indique todos
-los aspectos técnicos de la solución (librerías, como se debe compilar, etc,
+Por favor indique todos los aspectos técnicos de la solución (librerías, como se debe compilar, etc,
 con las versiones de cada elemento que utilice). Igualmente, todos los
 aspectos de parametrización que se requiere, direcciones IPs, puertos,
-conexión a bases de datos, etc.
+conexión a bases de datos, etc.<br>
+
+En esta parte vamos a ir libreria a libreria, primero con las dos de python api y shoppingcart
+### ***APIs***
+Vamos a entrar en la libreria, dentro de la libreria tenemos dos formas poder usar el codigo, una de ellas es activando el entorno virutual, y  la otra es instalando los requerimientos necesarios en nuestra consola<br>
+Si decidimos la primera opción, vamos a ejecutar el siguiente codigo en consola (Windows)
+```
+.\Scripts\activate
+```
+Si quieres la segunda opción, entonces ejecutar el siguiente codigo:
+```
+pip install requirements.txt
+```
+
+El puerto que utiliza el servidor de APIs es el 5000<br>
+Para poder correr el codigo simplemente vamos a poner en consola 
+```
+python src\server.py
+```
+***Nota***: recuerda que para poder usar los comando debes estar en la ubicación "Back\APIs"
+
+
+### ***ShoppingCart***
+Vamos a entrar en la libreria, dentro de la libreria tenemos dos formas poder usar el codigo, una de ellas es activando el entorno virutual, y  la otra es instalando los requerimientos necesarios en nuestra consola<br>
+Si decidimos la primera opción, vamos a ejecutar el siguiente codigo en consola (Windows)
+```
+.\Scripts\activate
+```
+Si quieres la segunda opción, entonces ejecutar el siguiente codigo:
+```
+pip install requirements.txt
+```
+
+El puerto que utiliza el servidor de APIs es el 50052<br>
+Para poder correr el codigo simplemente vamos a poner en consola 
+```
+python src\shopping_cart_server.py
+```
+***Nota***: recuerda que para poder usar los comando debes estar en la ubicación "Back\ShoppingCart"
+
+### ***Inventory***
+Antes que nada debemos tener la version 1.16 para poder instalar dale click [aca](https://go.dev/doc/install). <br>
+Despues de haber instalado,vamos a iniciar el servidor de inventario, para esto, tenemos que realizar el siguiente comando: 
+```
+go run src\inventory_server.py
+```
+***Nota:*** Todas las librerias que se usaron van a estar en \Back\Inventory\go.mod
 
 ***
 
