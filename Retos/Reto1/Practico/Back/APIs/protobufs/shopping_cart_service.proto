@@ -14,8 +14,9 @@ message DeleteProductFromCart{
 }
 
 message ProductDeletedInCartResponse{
-    int32 id_product=1;
-    int32 product_quantity_left=2;
+    bool status_code=1;
+    int32 id_product=2;
+    int32 product_quantity_left=3;
 }
 service ProductService{
     rpc AddProduct(ProductAdditionToCart) returns (ProductAdditionToCartResponse) {}
