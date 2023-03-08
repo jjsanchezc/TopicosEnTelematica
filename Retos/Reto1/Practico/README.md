@@ -1,8 +1,7 @@
 # **RetoProgramación N1**
 **Curso:** Tópicos Especiales en Telemática <br>
 **Título:** Comunicación entre Procesos Remotos: gRPC.<br>
-**Objetivo:** Desarrollar habilidades en la comunicación entre procesos distribuidos utilizando llamadas a procedimientos remotos (RPCs), especificamente gRPC.<br>
-**Duración:** 35 mins.<br>
+**Objetivo:** Desarrollar habilidades en la comunicación entre procesos distribuidos utilizando llamadas a procedimientos remotos (RPCs), especificamente gRPC.Por medio de una api-gateway poder recibir pedidos de postman y que esta api pueda comunicarse de manera efectiva con los microservicios para darle la mejor respuesta posible al postman<br>
 **Autores:** Juan José Sánchez Cortés - Estudiante de la Universidad EAFIT - [jjsanchezc](https://gist.github.com/jjsanchezc) <br>
 
 ***
@@ -74,7 +73,7 @@ con las versiones de cada elemento que utilice). Igualmente, todos los
 aspectos de parametrización que se requiere, direcciones IPs, puertos,
 conexión a bases de datos, etc.<br>
 
-En esta parte vamos a ir libreria a libreria, primero con las dos de python api y shoppingcart
+En esta parte vamos a ir de carpeta en carpeta, primero con las dos de python api y shoppingcart
 ### ***APIs***
 Vamos a entrar en la libreria, dentro de la libreria tenemos dos formas poder usar el codigo, una de ellas es activando el entorno virutual, y  la otra es instalando los requerimientos necesarios en nuestra consola<br>
 Si decidimos la primera opción, vamos a ejecutar el siguiente codigo en consola (Windows)
