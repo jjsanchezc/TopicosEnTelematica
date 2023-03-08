@@ -22,14 +22,14 @@ shoppingcart_port = grpc.insecure_channel(shoppingcart_channel)
 inventory_stub = inventory_service_pb2_grpc.ProductAvailabilityStub(inventory_port)
 shoppingcart_stub = shopping_cart_service_pb2_grpc.ProductServiceStub(shoppingcart_port)
 
-@app.route('/ProductToSearch', methods=['POST'])
+@app.route('/ProductToSearch/Availability', methods=['POST'])
 def inventory():
     # store the postman request
     data = request.json
     
     ans=inventory_stub.SearchProduct(inventory_service_pb2.ProductToSearch(id_product=int(data["id_product"])))
     if ans.status_code==True:
-        return "Se agregó correctamente el producto "+ str(data["id_product"])
+        return "Hay stock del producto "+ str(data["id_product"])
     else:
         return "No hay stock del producto "+ str(data["id_product"])
 
