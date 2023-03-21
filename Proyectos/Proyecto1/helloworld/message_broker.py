@@ -47,11 +47,6 @@ class MessageBroker:
         while True:
             # Obtenemos el siguiente mensaje de la cola
             message = self.message_queue.get()
-            '''#print(f'esta es la cola de mensajes {message} y esta es la lista de conexiones {self.connections}')
-            # Enviamos el mensaje a todas las conexiones registradas excepto la actual
-            while not self.connections:
-                pass
-                #print('esperando conexion')'''
             for connection in self.connections:
                 #print(f'he enviado todos los mensajes y esta son las conexiones {self.connections}')
                 connection.sendall(message)
@@ -60,13 +55,3 @@ if __name__ == '__main__':
     # Creamos una instancia del broker de mensajes y lo iniciamos
     message_broker = MessageBroker(8000)
     message_broker.run()
-
-
-
-
-'''bueno
-[<socket.socket fd=524, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 8000), raddr=('127.0.0.1', 55131)>]
-
-
-malo
-[<socket.socket fd=544, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 8000), raddr=('127.0.0.1', 55169)>]'''
