@@ -1,6 +1,8 @@
 import socket
+import requests
 
 def send_message(message):
+    
     # Creamos un socket y nos conectamos al servidor MOM
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect(('localhost', 8000))
