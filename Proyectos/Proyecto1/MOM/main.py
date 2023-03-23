@@ -4,6 +4,7 @@ from client import Client
 app = Flask(__name__)
 
 messages_queue = []
+#CLASE USUARIO
 class User:
     '''Login of the user
     '''    
@@ -14,6 +15,7 @@ class User:
     
     def is_valid(self):
         #por ahora dejar esta implementacion sencilla de usuario
+        #NO ESTÁ IMPLEMENTADO 
         if (self.username,self.password) in self.valid_usernames.items():
             return True
         return False

@@ -9,8 +9,6 @@ class Client:
 
 
 # First all the methods as a publisher
-
-
     def see_my_topics_pub(self):
         '''method used to see all my topics as a publisher
 
@@ -42,7 +40,6 @@ class Client:
             return print('topic borrado')
 
     def send_message(self, topic_name) -> bool:
-        # topic=Topics(topic_name)
         if topic_name in self.my_topics_pub:
             return True
         else:

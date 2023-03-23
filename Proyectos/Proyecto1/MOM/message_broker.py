@@ -24,18 +24,21 @@ def add_queue(mensaje):
 
 
 class MessageBroker:
-    def __init__(self) -> None:
+    def __init__(self,nombre_topico,mensaje,) -> None:
         self.exchange=self.Exchange()
-    
+        self.queue=self.Queue()
     
     class Exchange:
         def __init__(self) -> None:
-            self.topic=1
+            pass
         
         def get_topics(self):
-            return 2
+            pass
     
     
     class Queue:
+        '''la cola almacena y luego entrega los mensajes a cada consumir
+        '''        
         def __init__(self) -> None:
             pass
+        
