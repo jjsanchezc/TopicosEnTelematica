@@ -4,7 +4,24 @@ from client import Client
 app = Flask(__name__)
 
 messages_queue = []
+class User:
+    '''Login of the user
+    '''    
+    def __init__(self,user,password) -> None:
+        self.username=user
+        self.password=password
+        self.valid_usernames={'jj':'1234','jjs':11} #esto deberia ser algun .txt o algo asi
+    
+    def is_valid(self):
+        #por ahora dejar esta implementacion sencilla de usuario
+        if (self.username,self.password) in self.valid_usernames.items():
+            return True
+        return False
+
+
 user='JJ'   
+
+#MENU INICIAL
 @app.route('/login', methods=['POST'])
 def home_login():
     '''home page, where the user will log in
@@ -25,11 +42,20 @@ def menu_choice():
         pass
     else:
         return redirect("localhost:5000/menu_choice/")
+
+
+
+#PUBLISHER
+client=Client(user)
+
+@app.route('/topics/add_topic/', methods=['POST'])
+def add_topic():
+    pass
+
+
 @app.route('/mensaje/<topic_name>', methods=['POST'])
 def send_message(topic_name):
-    client=Client(user)
-    client.add_topic_pub(topic_name)
-    if not client.send_message(topic_name):
+    if client.send_message(topic_name) is False:
         return jsonify({'mensaje': 'Error al enviar, topico no existe','a': str(client.my_topics_pub)})
     else:
         message=request.json['mensaje']
