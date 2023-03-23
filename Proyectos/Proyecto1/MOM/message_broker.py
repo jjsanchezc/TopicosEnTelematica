@@ -23,27 +23,19 @@ def add_queue(mensaje):
     messages_queue.append(mensaje)
 
 
-
-
-
-#SECOND ALL THE SUBSCRIBER METHODS
-# Ruta para recibir un mensaje
-@app.route('/mensaje', methods=['GET'])
-def recibir_mensaje():
-    if len(messages_queue) == 0:
-        return jsonify({'mensaje': 'No hay mensajes'})
-    else:
-        mensaje = messages_queue.pop(0)
-        return jsonify({'mensaje': mensaje})
-
 class MessageBroker:
     def __init__(self) -> None:
-        pass
+        self.exchange=self.Exchange()
     
     
+    class Exchange:
+        def __init__(self) -> None:
+            self.topic=1
+        
+        def get_topics(self):
+            return 2
     
-
-
-
-class Exchange:
-    pass
+    
+    class Queue:
+        def __init__(self) -> None:
+            pass
