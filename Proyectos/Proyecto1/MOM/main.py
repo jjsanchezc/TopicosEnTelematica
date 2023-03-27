@@ -1,29 +1,12 @@
 from flask import Flask, jsonify, redirect, request
-from client import Client
-
+from user import User
+import json
 app = Flask(__name__)
 
 messages_queue = []
-#CLASE USUARIO
-class User:
-    '''Login of the user
-    '''    
-    def __init__(self,user,password) -> None:
-        self.username=user
-        self.password=password
-        self.valid_usernames={'jj':'1234','jjs':11} #esto deberia ser algun .txt o algo asi
-    
-    def is_valid(self):
-        #por ahora dejar esta implementacion sencilla de usuario
-        #NO ESTÁ IMPLEMENTADO 
-        if (self.username,self.password) in self.valid_usernames.items():
-            return True
-        return False
-
-
-user='JJ'   
 
 #MENU INICIAL
+
 @app.route('/login', methods=['POST'])
 def home_login():
     '''home page, where the user will log in
@@ -31,10 +14,42 @@ def home_login():
     Returns:
         returns the "page" where the user will select if they want to be publisher or subscriber
     '''  
-    return redirect("localhost:5000/menu_choice/")
+    
+    username=request.json['username']
+    password=request.json['password']
+    user=User(username,password)
+    if user.is_valid():
+        jsonify({"mensaje":'cuenta valida'})
+        return redirect("/menu")
+    return jsonify({"mensaje":'incorrecto'})
 
-@app.route('/menu_choice', methods=['POST'])
+@app.route('/menu', methods=['GET'])
+def menu():
+    return 'hola, decide que quieres ser'
+@app.route('/menu', methods=['POST'])
 def menu_choice():
+    choice=request.json["opcion"]
+    print(choice)
+    if choice=="1":
+        return redirect("/menu/publisher")
+    elif choice=='2':
+        #go to subscriber
+        return redirect("/menu/publisher")
+    else:
+        return redirect("/menu")
+
+
+
+#PUBLISHER
+@app.route('/menu/publisher', methods=['GET'])
+def menu_publisher():
+    return jsonify({"mensaje":'hola, decide que quieres ser',
+                    "opcion 1":"ver mis topicos",
+                    "opcion 2":"añadir topicos",
+                    "opcion 3":"eliminar topicos",
+                    "opcion 4":"Enviar topicos"})
+@app.route('/menu/publisher', methods=['POST'])
+def menu_publisher_choice():
     choice=request
     if choice=='1':
         #go to publisher
@@ -43,34 +58,38 @@ def menu_choice():
         #go to subscriber
         pass
     else:
-        return redirect("localhost:5000/menu_choice/")
+        return redirect("/menu")
 
-
-
-#PUBLISHER
-client=Client(user)
-
-@app.route('/topics/add_topic/', methods=['POST'])
+@app.route('/menu/publisher/topics/add_topic/', methods=['POST'])
 def add_topic():
-    pass
+    topic_name=request.json['topic_name']
+    if user.add_topic_pub(topic_name):
+        user.see_my_topics_pub()
+        return jsonify({"message":"topico creado con exito"})
+    user.see_my_topics_pub()
+    return jsonify({'message':'error al crear el topico'})
 
+@app.route('/menu/publisher/topics', methods=['GET'])
+def see_topics():
+    return user.see_my_topics_pub()
 
-@app.route('/mensaje/<topic_name>', methods=['POST'])
+@app.route('/menu/publisher/mensaje/<topic_name>', methods=['POST'])
 def send_message(topic_name):
-    if client.send_message(topic_name) is False:
-        return jsonify({'mensaje': 'Error al enviar, topico no existe','a': str(client.my_topics_pub)})
+    if user.send_message(topic_name) is False:
+        return jsonify({'mensaje': 'Error al enviar, topico no existe','a': str(user.my_topics_pub)})
     else:
         message=request.json['mensaje']
         add_queue(message)
-        return jsonify({'mensaje': 'Mensaje enviado correctamente'})
+        return jsonify({'mensaje': 'Mensaje enviado correctamente para los subscriptores de '+topic_name})
 
+#despues va a pasar a la clase de message_broker
 def add_queue(mensaje):
     messages_queue.append(mensaje)
 
 
 
 
-
+user=User("JJ")
 
 # Ruta para recibir un mensaje
 @app.route('/mensaje', methods=['GET'])

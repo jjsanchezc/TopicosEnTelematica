@@ -20,24 +20,24 @@ class MessageBroker:
 
         while True:
             # Esperamos por una conexión entrante
-            client_socket, address = self.socket.accept()
+            user_socket, address = self.socket.accept()
 
             # Agregamos la conexión a la lista de conexiones
             print('recibi una conexión nueva')
-            self.connections.append(client_socket)
+            self.connections.append(user_socket)
 
-            # Iniciamos un hilo para manejar la conexión del cliente
-            threading.Thread(target=self.handle_connection, args=(client_socket,)).start()
+            # Iniciamos un hilo para manejar la conexión del usere
+            threading.Thread(target=self.handle_connection, args=(user_socket,)).start()
 
-    def handle_connection(self, client_socket):
+    def handle_connection(self, user_socket):
         while True:
-            # Leemos los datos recibidos del cliente
-            data = client_socket.recv(1024)
+            # Leemos los datos recibidos del usere
+            data = user_socket.recv(1024)
 
             # Si no hay datos, cerramos la conexión
             if not data:
-                self.connections.remove(client_socket)
-                client_socket.close()
+                self.connections.remove(user_socket)
+                user_socket.close()
                 break
 
             # Agregamos los datos a la cola de mensajes
