@@ -24,16 +24,30 @@ def add_queue(mensaje):
 
 
 class MessageBroker:
-    def __init__(self,nombre_topico,mensaje,) -> None:
+    def __init__(self,topic_name,message):
         self.exchange=self.Exchange()
         self.queue=self.Queue()
+        self.topic_name=topic_name
+        self.message=message
     
     class Exchange:
         def __init__(self) -> None:
             pass
         
-        def get_topics(self):
+        #Publisher
+        def get_topics_pub(self):
             pass
+        
+        def send_message(self,message):
+            pass
+        
+        def add_topic(self,topic_name):
+            pass
+        
+        def delete_topic(self,topic_name):
+            pass
+        
+        
     
     
     class Queue:

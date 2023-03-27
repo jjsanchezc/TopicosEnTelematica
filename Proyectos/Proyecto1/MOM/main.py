@@ -73,14 +73,18 @@ def add_topic():
 def see_topics():
     return user.see_my_topics_pub()
 
-@app.route('/menu/publisher/mensaje/<topic_name>', methods=['POST'])
+
+@app.route('/menu/publisher/message/<topic_name>', methods=['POST'])
 def send_message(topic_name):
     if user.send_message(topic_name) is False:
         return jsonify({'mensaje': 'Error al enviar, topico no existe','a': str(user.my_topics_pub)})
     else:
         message=request.json['mensaje']
         add_queue(message)
+        
         return jsonify({'mensaje': 'Mensaje enviado correctamente para los subscriptores de '+topic_name})
+
+
 
 #despues va a pasar a la clase de message_broker
 def add_queue(mensaje):
