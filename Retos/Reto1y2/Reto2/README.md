@@ -54,7 +54,7 @@ Hay un entorno virtual donde dentro de este se encuentran las respectivas carpet
    - Se encuentra principalmente el servidor donde corre el API y todo el codigo gRPC (en Python) que se generan de los .proto
 
 ## Arquitectura
-![imagen](readme_images\arquitectura.png)<br>
+![imagen](readme_images/arquitectura.png)<br>
 Para este programa se realizo una simulación de una parte de un comercio electronico con API Gateway que gestiona las peticiones HTTP entrantres y las reenvía a los microservicios. En algunos metodos como AddProduct, podemos ver la interacción entre microservicios, ya que para poder agregar un producto al carrito de compras, primero debe revisar si hay stock disponible en el inventario.
 Hay otros microservicios que simplemente dependen de que el api reciba una solicitud, le pregunte al microservico, este le responda y ya el api le de la respuesta final al postman (en este caso podriamos ver a DeleteProduct en el microservicio de ShoppingCart y SearchProduct en el microservicio de inventory)<br>
 ***
@@ -131,17 +131,17 @@ Para poder usar de forma correcta el programa primero debemos inicializar en 3 c
 ### ***Inicializar servidores***:
 ***Api-gateway:*** Para inicializar el servidor debemos estar en la carpeta Back/APIs,[definir](#APIs). Ya que iniciamos el servidor este estará esperando el request.<br>
 Deberia verse así:<br>
-![imagen](readme_images\API_server.png)<br>
+![imagen](readme_images/API_server.png)<br>
 ***ShoppingCart:*** Para inicializar el servidor debemos estar en la carpeta Back/ShoppingCart,[definir](#ShoppingCart). luego de iniciar el servidor este estará esperando a las peticiones del api.<br>
 Deberia verse así:<br>
-![imagen](readme_images\sc_server.png)<br>
+![imagen](readme_images/sc_server.png)<br>
 ***Inventory:*** Para inicializar el servidor debemos estar en la carpeta Back/Inventory,[definir](#Inventory). luego de iniciar el servidor este estará esperando a las peticiones del api.<br>
 Deberia verse así:<br>
-![imagen](readme_images\inventory_server.png)<br>
+![imagen](readme_images/inventory_server.png)<br>
 ### ***Configurar Postman***
 Postman es el servicio que se usó para poder conectarse con el programa. Para poder empezar a hacer peticiones primero tenemos que crear un HTTP request:
-![imagen](readme_images\POSTMAN1.png)<br>
-![imagen](readme_images\POSTMAN2.png)<br>
+![imagen](readme_images/POSTMAN1.png)<br>
+![imagen](readme_images/POSTMAN2.png)<br>
 Luego debemos de definir la url y el metodo
 ***definir url:*** 
 ```
@@ -157,14 +157,14 @@ localhost:5000/ < microservicio > / < accion a realizar >
       - Availability
 
 Despues tenemos definir el mensaje que le vamos a enviar al api para poder obtener una respuesta, en este caso vamos a usar el siguiente ejemplo :<br>
-![imagen](readme_images\POSTMAN_Delete.png)<br>
+![imagen](readme_images/POSTMAN_Delete.png)<br>
 Podemos ver como definimos que es un POST, luego le dimos la URL, despues definimos el mensaje, en este caso le vamos a enviar un json con los parametros que se ven
 Para terminar le damos en el boton de SEND y abajo deberia aparecernos la respuesta del servidor<br>
 Imagenes de posibles respuestas:<br>
-![imagen](readme_images\ANS1.png)<br>
-![imagen](readme_images\ANS2.png)<br>
-![imagen](readme_images\ANS3.png)<br>
-![imagen](readme_images\ANS4.png)<br>
-![imagen](readme_images\ANS5.png)<br>
-![imagen](readme_images\ANS6.png)<br>
+![imagen](readme_images/ANS1.png)<br>
+![imagen](readme_images/ANS2.png)<br>
+![imagen](readme_images/ANS3.png)<br>
+![imagen](readme_images/ANS4.png)<br>
+![imagen](readme_images/ANS5.png)<br>
+![imagen](readme_images/ANS6.png)<br>
 
