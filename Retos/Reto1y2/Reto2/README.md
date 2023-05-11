@@ -118,7 +118,7 @@ python src\shopping_cart_server.py
 Antes que nada debemos tener la version 1.16 para poder instalar dale click [aca](https://go.dev/doc/install). <br>
 Despues de haber instalado,vamos a iniciar el servidor de inventario, para esto, tenemos que realizar el siguiente comando: 
 ```
-go run src\inventory_server.py
+go run src\inventory_server.go
 ```
 ***Nota:*** Todas las librerias que se usaron van a estar en \Back\Inventory\go.mod
 
