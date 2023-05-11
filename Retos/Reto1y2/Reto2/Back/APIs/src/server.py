@@ -11,8 +11,8 @@ import multiprocessing
 app = Flask(__name__)
 
 # Configuración de los endpoints de los microservicios
-inventory_channel = 'localhost:50051'
-shoppingcart_channel = 'localhost:50052'
+inventory_channel = '181.132.151.164:50051'
+shoppingcart_channel = '181.132.151.164:50052'
 
 # Creación de los canales de comunicación para cada microservicio
 inventory_port = grpc.insecure_channel(inventory_channel)
