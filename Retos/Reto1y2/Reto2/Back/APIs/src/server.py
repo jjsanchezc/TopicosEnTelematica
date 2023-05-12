@@ -1,5 +1,3 @@
-from flask import Flask, request, jsonify
-from concurrent import futures
 import logging
 import grpc
 import shopping_cart_service_pb2
@@ -12,7 +10,7 @@ app = Flask(__name__)
 
 # Configuración de los endpoints de los microservicios
 inventory_channel = '181.132.151.164:50051'
-shoppingcart_channel = '181.132.151.164:50052'
+shoppingcart_channel = '44.215.219.75:50052'
 
 # Creación de los canales de comunicación para cada microservicio
 inventory_port = grpc.insecure_channel(inventory_channel)
@@ -26,7 +24,7 @@ shoppingcart_stub = shopping_cart_service_pb2_grpc.ProductServiceStub(shoppingca
 def inventory():
     # store the postman request
     data = request.json
-    
+
     ans=inventory_stub.SearchProduct(inventory_service_pb2.ProductToSearch(id_product=int(data["id_product"])))
     if ans.status_code==True:
         return "Hay stock del producto "+ str(data["id_product"])
@@ -46,6 +44,7 @@ def shoppingcart_addproduct():
 @app.route('/ShoppingCartService/DeleteProduct', methods=['POST'])
 def shoppingcart_deleteproduct():
     # store the postman request
+    print("recibo peticion")
     data = request.json
     try:
         sc=shoppingcart_stub.DeleteProduct(shopping_cart_service_pb2.DeleteProductFromCart(id_product=int(data["id_product"]),reason=str(data["reason"])))
@@ -55,7 +54,12 @@ def shoppingcart_deleteproduct():
         return f"No se pudo eliminar el producto {str(data['id_product'])} ya que no lo tenias en el carrito"
     else:
         return f"Se eliminó correctamente el producto {str(data['id_product'])} al carrito y te quedan {str(sc.product_quantity_left)} del mismo producto en el carrito"
-
-
+"""
+def serve():
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    server.add_insecure_port("[::]:5001")
+    server.start()
+    app.run(host="54.147.224.238", port=5000)
+"""
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
