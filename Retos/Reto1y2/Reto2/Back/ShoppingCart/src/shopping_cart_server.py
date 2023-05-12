@@ -48,24 +48,3 @@ def server():
 if __name__ == "__main__":
     serv = multiprocessing.Process(target=server)
     serv.start()
-    
-    
-    
-'''
-    inventory_connection=multiprocessing.Process(target=inventory_server)
-    inventory_connection.start()
-    
-class ProductAvailability(inventory_shopping_cart_service_pb2_grpc.ProductAvailabilityServicer):
-    def SearchProduct(self,request,context):
-        print('producto a buscar:\n '+ str(request))
-        return inventory_shopping_cart_service_pb2.ProductAvailabilityResponse(status_code=1,availability=2)
-
-def inventory_server():
-    servidor = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    inventory_shopping_cart_service_pb2_grpc.add_ProductAvailabilityServicer_to_server(
-        ProductAvailability(), servidor)
-    servidor.add_insecure_port(HOST2)
-    print('Service2 is Running')
-    servidor.start()
-    servidor.wait_for_termination()
-'''
