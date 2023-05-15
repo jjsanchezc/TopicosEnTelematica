@@ -1,4 +1,4 @@
-  GNU nano 6.2                                                                                                                     shopping_cart_server.py                                                                                                                              from concurrent import futures
+from concurrent import futures
 import logging
 import grpc
 import shopping_cart_service_pb2
@@ -9,7 +9,7 @@ import inventory_shopping_cart_service_pb2
 import multiprocessing
 
 
-HOST1 = '54.147.224.238:5000'
+HOST1 = '[::]:5002'
 
 class ProductService(shopping_cart_service_pb2_grpc.ProductServiceServicer):
     def AddProduct(self, request, context):
