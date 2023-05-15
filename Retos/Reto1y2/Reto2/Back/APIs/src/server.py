@@ -1,3 +1,5 @@
+from flask import Flask, request, jsonify
+from concurrent import futures
 import logging
 import grpc
 import shopping_cart_service_pb2
@@ -9,8 +11,8 @@ import multiprocessing
 app = Flask(__name__)
 
 # Configuración de los endpoints de los microservicios
-inventory_channel = '181.132.151.164:50051'
-shoppingcart_channel = '44.215.219.75:50052'
+inventory_channel = '181.132.151.164:5001'
+shoppingcart_channel = '44.215.219.75:5002'
 
 # Creación de los canales de comunicación para cada microservicio
 inventory_port = grpc.insecure_channel(inventory_channel)
@@ -54,12 +56,6 @@ def shoppingcart_deleteproduct():
         return f"No se pudo eliminar el producto {str(data['id_product'])} ya que no lo tenias en el carrito"
     else:
         return f"Se eliminó correctamente el producto {str(data['id_product'])} al carrito y te quedan {str(sc.product_quantity_left)} del mismo producto en el carrito"
-"""
-def serve():
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    server.add_insecure_port("[::]:5001")
-    server.start()
-    app.run(host="54.147.224.238", port=5000)
-"""
+
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5002)
