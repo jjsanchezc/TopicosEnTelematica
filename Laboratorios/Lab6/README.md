@@ -2,6 +2,8 @@
 
 ## menu de siempre
 
+
+***
 ## Descargar el CLI
 - Primero se descarga el CLI desde la pagina de AWS 
 
@@ -64,6 +66,8 @@ aws emr create-cluster \
 ![cluster_emr_res](imagenes/resultados_cluster_emr.png)
 
 ![cluster_emr2_res](imagenes/resultados_cluster_emr2.png)
+
+***
 
 ## Referencias 
 https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html
