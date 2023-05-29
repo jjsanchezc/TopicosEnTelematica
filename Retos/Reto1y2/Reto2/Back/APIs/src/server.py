@@ -11,8 +11,8 @@ import multiprocessing
 app = Flask(__name__)
 
 # Configuración de los endpoints de los microservicios
-inventory_channel = 'localhost:50051'
-shoppingcart_channel = 'localhost:50052'
+inventory_channel = '181.132.151.164:5001'
+shoppingcart_channel = '44.215.219.75:5002'
 
 # Creación de los canales de comunicación para cada microservicio
 inventory_port = grpc.insecure_channel(inventory_channel)
@@ -26,7 +26,7 @@ shoppingcart_stub = shopping_cart_service_pb2_grpc.ProductServiceStub(shoppingca
 def inventory():
     # store the postman request
     data = request.json
-    
+
     ans=inventory_stub.SearchProduct(inventory_service_pb2.ProductToSearch(id_product=int(data["id_product"])))
     if ans.status_code==True:
         return "Hay stock del producto "+ str(data["id_product"])
@@ -46,6 +46,7 @@ def shoppingcart_addproduct():
 @app.route('/ShoppingCartService/DeleteProduct', methods=['POST'])
 def shoppingcart_deleteproduct():
     # store the postman request
+    print("recibo peticion")
     data = request.json
     try:
         sc=shoppingcart_stub.DeleteProduct(shopping_cart_service_pb2.DeleteProductFromCart(id_product=int(data["id_product"]),reason=str(data["reason"])))
@@ -56,6 +57,5 @@ def shoppingcart_deleteproduct():
     else:
         return f"Se eliminó correctamente el producto {str(data['id_product'])} al carrito y te quedan {str(sc.product_quantity_left)} del mismo producto en el carrito"
 
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5002)
