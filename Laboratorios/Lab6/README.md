@@ -68,7 +68,44 @@ aws emr create-cluster \
 ![cluster_emr2_res](imagenes/resultados_cluster_emr2.png)
 
 ***
+# Conexión Main node del cluster
 
+## conexión
+
+para la conexion por SSH debemos:
+
+```
+ssh -i "emr-key.pem" ec2-user@ec2-54-210-63-190.compute-1.amazonaws.com
+```
+
+cuando estemos dentro actualizaremos yum y luego instalaremos git:
+
+```
+yum update
+yum intall git
+```
+
+se hace la copia del repo:
+
+```
+git clone https://github.com/ST0263/st0263-2023-1.git
+```
+
+Luego de haber clonado el repo se entra en el y se realizan los siguientes comandos: 
+
+```
+cd st0263-2023-1/
+cd "Laboratorio N6-MapReduce"
+cd wordcount
+python wordcount-local.py /datasets/gutenberg-small/*.txt > salida-serial.txt
+```
+si se hace el `ls` veremos como se creó el archivo "salida-serial.txt" <br>
+<br>
+Se instala `pip` y `mrjob`
+```
+sudo yum install python-pip
+sudo pip install mrjob
+```
 ## Referencias 
 https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html
 PDF-Laboratorio-N6-Crear Cluster EMR-Hadoop
