@@ -43,7 +43,7 @@ Para la creación del cluster se tuvo que hacer el siguente comando:
 aws emr create-cluster \
     --release-label emr-5.26.0 \
     --service-role EMR_DefaultRole \
-    --ec2-attributes InstanceProfile=EMR_EC2_DefaultRole \
+    --ec2-attributes KeyName=emr-key,InstanceProfile=EMR_EC2_DefaultRole \
     --name emr-lab-reto-cluster \
     --applications Name=Hue Name=Spark Name=Hadoop Name=Sqoop Name=Hive \
     --instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m4.large InstanceGroupType=CORE,InstanceCount=2,InstanceType=m4.large InstanceGroupType=TASK,InstanceCount=1,InstanceType=m4.large \
