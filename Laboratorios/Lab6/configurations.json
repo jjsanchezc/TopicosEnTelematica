@@ -1,0 +1,44 @@
+{
+    "Name": "MiClusterEMR-Lab-Reto",
+    "ReleaseLabel": "emr-5.26.0",
+    "Instances": {
+      "InstanceGroups": [
+        {
+          "Name": "MasterNode",
+          "Market": "ON_DEMAND",
+          "InstanceRole": "MASTER",
+          "InstanceType": "m4.large",
+          "InstanceCount": 1
+        },
+        {
+          "Name": "CoreNodes",
+          "Market": "ON_DEMAND",
+          "InstanceRole": "CORE",
+          "InstanceType": "m4.large",
+          "InstanceCount": 2
+        },
+        {
+          "Name": "CoreNodes",
+          "Market": "ON_DEMAND",
+          "InstanceRole": "TASK",
+          "InstanceType": "m4.large",
+          "InstanceCount": 2
+        }
+      ]
+    },
+    "Applications": [
+      {
+        "Name": "Hadoop"
+      },
+      {
+        "Name": "Spark"
+      },
+      {
+
+      }
+    ],
+    "VisibleToAllUsers": true,
+    "JobFlowRole": "EMR_EC2_DefaultRole",
+    "ServiceRole": "EMR_DefaultRole"
+  }
+  
