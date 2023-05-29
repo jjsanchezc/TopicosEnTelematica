@@ -42,7 +42,7 @@ aws emr create-cluster \
     --instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m4.large InstanceGroupType=CORE,InstanceCount=2,InstanceType=m4.large InstanceGroupType=TASK,InstanceCount=1,InstanceType=m4.large \
     --no-auto-terminate
 ```
->--release
+asdf asdf `--release-label` sadfasd
 ## Creacion de configuración
 Para poder crear el Cluster, primero se debe crear 
 
