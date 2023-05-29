@@ -62,6 +62,7 @@ aws emr create-cluster \
 - ### EMR
 
 ![cluster_emr_res](imagenes/resultados_cluster_emr.png)
+
 ![cluster_emr2_res](imagenes/resultados_cluster_emr2.png)
 
 ## Referencias 
