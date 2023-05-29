@@ -1,4 +1,4 @@
-# Laboratorio: Map/Reduce en Python con MRJOB
+# Laboratorio / Reto: Map/Reduce en Python con MRJOB
 
 ## menu de siempre
 
