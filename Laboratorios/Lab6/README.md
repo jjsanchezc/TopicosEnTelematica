@@ -46,9 +46,8 @@ aws emr create-cluster \
     --service-role EMR_DefaultRole \
     --ec2-attributes KeyName=emr-key,InstanceProfile=EMR_EC2_DefaultRole \
     --name emr-lab-reto-cluster \
-    --log-uri s3://jjsanchezc-lab-emr/logs \
-    --use-default-roles \
-
+    --log-uri s3://lab-reto-jjsanchezc/logs/ \
+    --applications Name=Hue Name=Spark Name=Hadoop Name=Sqoop Name=Hive \
     --instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m4.large InstanceGroupType=CORE,InstanceCount=2,InstanceType=m4.large InstanceGroupType=TASK,InstanceCount=1,InstanceType=m4.large \
     --no-termination-protected
 ```
@@ -119,9 +118,19 @@ Y sus resultados deberian ser:
 
 Para terminar,debemos que copiar el dataset en el emr y luego hacer el comando:
 
+crear carpeta en hdfs 
+````
+hdfs dfs -mkdir /user/admin/
+```
+
+
 ```
 hdfs dfs -copyFromLocal /home/hadoop/st0263-2023-1/datasets/ /user/admin/
-python wordcount-mr.py hdfs:///user/admin/datasets/gutenberg-small/*.txt
+python wordcount-mr.py hdfs:///user/admin/datasets/gutenberg-small/*.txt -r hadoop --output-dir hdfs:///user/admin/result3
+```
+para ver los resultados en el result 
+```
+hdfs dfs -cat /user/admin/result3/*
 ```
 
 ***

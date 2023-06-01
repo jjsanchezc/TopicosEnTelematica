@@ -1,30 +1,30 @@
 from mrjob.job import MRJob
 
-class valorStockMR(MRJob):
+
+class ValorAccionXDia(MRJob):
 
     def mapper(self, _, line):
-        company, price, date = line.split(',')
-        # nombre de la compañía como clave y  tupla (precio, fecha) como valor
-        yield company, (float(price), date)
+        # compalia,precio,fecha
+        company, precio, date = line.split(',')
+        yield company, (float(precio), date)
 
     def reducer(self, company, valores):
-        # Encuentra el día de menor y mayor valor para cada compañía
-        min_price = None
-        max_price = None
+        min_valor = None
+        max_valor = None
         min_date = None
         max_date = None
-        
-        for price, date in valores:
-            if min_price is None or price < min_price:
-                min_price = price
-                min_date = date
-            if max_price is None or price > max_price:
-                max_price = price
+        # Ciclo para encontrar los dias con menor y mayor valor en las acciones de cada empresa
+        for precio, date in valores:
+            if max_valor is None or precio > max_valor:
+                max_valor = precio
                 max_date = date
-        
-        # Emite el nombre de la compañía, el día de menor valor y el día de mayor valor como resultado final
-        yield company, ( min_date, min_price, max_date, max_price)
+            if min_valor is None or precio < min_valor:
+                min_valor = precio
+                min_date = date
+
+        # Retorna los dias que acabamos de encontrar
+        yield company, (min_date, min_valor, max_date, max_valor)
 
 
 if __name__ == '__main__':
-    valorStockMR.run()
+    ValorAccionXDia.run()
