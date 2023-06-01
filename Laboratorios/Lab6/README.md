@@ -46,6 +46,7 @@ aws emr create-cluster \
     --service-role EMR_DefaultRole \
     --ec2-attributes KeyName=emr-key,InstanceProfile=EMR_EC2_DefaultRole \
     --name emr-lab-reto-cluster \
+    --applications Name=Hue Name=Spark Name=Hadoop Name=Sqoop Name=Hive \
     --instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m4.large InstanceGroupType=CORE,InstanceCount=2,InstanceType=m4.large InstanceGroupType=TASK,InstanceCount=1,InstanceType=m4.large \
     --no-auto-terminate
 ```
@@ -53,7 +54,7 @@ aws emr create-cluster \
 `--service-role` Especifica el rol de servicio de IAM <br>
 `--ec2-attributes`Configuraciones de instancias de clúster y Amazon EC2.<br>
 `--name` Nombre del cluster <br>
-`--applications` Aplicaciónes que se van a instalar en el cluster --applications Name=Hue Name=Spark Name=Hadoop Name=Sqoop Name=Hive \ `no se si ponerlo`<br>
+`--applications` Aplicaciónes que se van a instalar en el cluster  `no se si ponerlo`<br>
 `--instance-group` Especifica el numero y el tipo de instancias EC2 que se van a crear, aparte del rol que estas van a tomar, sea "MASTER", "CORE" ó "TASK" <br>
 
 ### Resultados 
@@ -79,7 +80,7 @@ cuando estemos dentro actualizaremos yum, instalamos pip, mrjob y luego git:
 ```
 sudo yum update -y
 sudo yum install git -y
-sudo yum install python3-pip -y
+sudo yum install python-pip -y
 sudo pip3 install mrjob
 ```
 
@@ -107,9 +108,13 @@ este es el resultado:
 Ahora se quiere probar el mrjob local y se hace con el siguiente comando
 
 ```
-python wordcount-mr.py ./datasets/gutenberg-small/*.txt
+python wordcount-mr.py ../../datasets/gutenberg-small/*.txt
 ```
 
+Al final se quiere usar 
+```
+python "wordcount-mr.py -r hadoop hdfs:///datasets/gutenberg-small/*.txt --output-dir hdfs:///user/<login>/result3 --hadoop-streaming-jar $HADOOP_STREAMING_HOME/hadoop-streaming.jar
+```
 Y sus resultados deberian ser:
 
 ![wordcount-mr](imagenes/resultado_wordcount-mr.png)
