@@ -67,7 +67,7 @@ si desea ver el [codigo](RetoProgramacion/punto2/punto2a.py) <br>
 se ejecuta el comando:
 
 ```
-python punto2/punto2a.py dataset.txt
+python punto2/punto2a.py punto2/dataset.txt
 ```
 
 y su resultado es:
@@ -82,7 +82,7 @@ si desea ver el [codigo](RetoProgramacion/punto2/punto2b.py) <br>
 se ejecuta el comando:
 
 ```
-python punto2/punto2b.py dataset.txt
+python punto2/punto2b.py punto2/dataset.txt
 ```
 
 y su resultado es:
@@ -97,7 +97,7 @@ si desea ver el [codigo](RetoProgramacion/punto2/punto2c.py) <br>
 se ejecuta el comando:
 
 ```
-python punto2/punto2c.py dataset.txt
+python punto2/punto2c.py punto2/dataset.txt
 ```
 
 y su resultado es:
@@ -115,7 +115,7 @@ si desea ver el [codigo](RetoProgramacion/punto3/punto3a.py) <br>
 se ejecuta el comando:
 
 ```
-python punto3/punto3a.py dataset.txt
+python punto3/punto3a.py punto3/dataset.txt
 ```
 
 y su resultado es:
@@ -130,7 +130,7 @@ si desea ver el [codigo](RetoProgramacion/punto3/punto3b.py) <br>
 se ejecuta el comando:
 
 ```
-python punto3/punto3b.py dataset.txt
+python punto3/punto3b.py punto3/dataset.txt
 ```
 
 y su resultado es:
@@ -145,7 +145,7 @@ si desea ver el [codigo](RetoProgramacion/punto3/punto3c.py) <br>
 se ejecuta el comando:
 
 ```
-python punto3/punto3c.py dataset.txt
+python punto3/punto3c.py punto3/dataset.txt
 ```
 
 y su resultado es:
@@ -160,7 +160,7 @@ si desea ver el [codigo](RetoProgramacion/punto3/punto3d.py) <br>
 se ejecuta el comando:
 
 ```
-python punto3/punto3d.py dataset.txt
+python punto3/punto3d.py punto3/dataset.txt
 ```
 
 y su resultado es:
@@ -175,7 +175,7 @@ si desea ver el [codigo](RetoProgramacion/punto3/punto3e.py) <br>
 se ejecuta el comando:
 
 ```
-python punto3/punto3e.py dataset.txt
+python punto3/punto3e.py punto3/dataset.txt
 ```
 
 y su resultado es:
@@ -190,7 +190,7 @@ si desea ver el [codigo](RetoProgramacion/punto3/punto3f.py) <br>
 se ejecuta el comando:
 
 ```
-python punto3/punto3f.py dataset.txt
+python punto3/punto3f.py punto3/dataset.txt
 ```
 
 y su resultado es:
@@ -205,7 +205,7 @@ si desea ver el [codigo](RetoProgramacion/punto3/punto3g.py) <br>
 se ejecuta el comando:
 
 ```
-python punto3/punto3g.py dataset.txt
+python punto3/punto3g.py punto3/dataset.txt
 ```
 
 y su resultado es:
