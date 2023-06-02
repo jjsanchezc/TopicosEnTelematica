@@ -5,7 +5,7 @@ class EstableAltoStock(MRJob):
 
     def mapper(self, _, line):
         company, precio, date = line.split(',')
-        yield company, precio
+        yield company, float(precio)
 
     def reducer(self, company, precios):
         price_list = list(precios)
