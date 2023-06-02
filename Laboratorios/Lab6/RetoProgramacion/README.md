@@ -1,24 +1,29 @@
 # Reto de programación en Map/Reduce
 
+`Nota:` Las imagenes de algunas respuestas, debido a que son muy largas, solo se pudo adjuntar una parte de estas respuestas
+
 Debido a que en estos retos nos pedían que estos se resolvieran en el EMR, debemos clonar este repo
 
 ```
 git clone https://github.com/jjsanchezc/TopicosEnTelematica.git
 cd TopicosEnTelematica/Laboratorios/Lab6/RetoProgramacion
 ```
-Luego de entrar al `RetoProgramacion` podemos ver que está separado en cada punto que se pedia, y dentro de estos puntos se encuentran sus respectivas datasets.txt
+Luego de entrar al `RetoProgramacion` podemos ver que está separado en cada punto que se pedia, y dentro de estos puntos se encuentran sus respectivas datasets.txt <br>
 
-## Punto1
-
-Se tiene un conjunto de datos, que representan el salario anual de los empleados formales en Colombia por sector económico, según la DIAN. ver su [dataset.txt](RetoProgramacion/punto1/dataset.txt) <br>
-
-crear las carpetas en el hdfs:
+crear las carpetas para cada punto en el hdfs:
 
 ```
 hdfs dfs -mkdir /user/admin/punto1/
 hdfs dfs -mkdir /user/admin/punto2/
 hdfs dfs -mkdir /user/admin/punto3/
 ```
+
+
+
+## Punto1
+
+Se tiene un conjunto de datos, que representan el salario anual de los empleados formales en Colombia por sector económico, según la DIAN. ver su [dataset.txt](RetoProgramacion/punto1/dataset.txt) <br>
+
 
 ### Punto1a
 El salario promedio por Sector Económico (SE) <br>
