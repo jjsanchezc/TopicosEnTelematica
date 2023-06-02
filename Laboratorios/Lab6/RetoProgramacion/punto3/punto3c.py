@@ -1,25 +1,19 @@
 from mrjob.job import MRJob
 
 
-class LeastWatchedDayMR(MRJob):
+class MenorCantidadPeli(MRJob):
 
     def mapper(self, _, line):
-        fields = line.split(',')
-        
-        # Extrae la fecha de la línea
-        date = fields[4]
-        
-        # fecha como clave 
-        yield date, 1
+        id_usuario,id_pelicula,calificacion,genero,fecha=line.split(',')
+        yield fecha, 1
 
-    def reducer(self, date, values):
+    def reducer(self, fecha, values):
         # Calcula la cantidad total de películas vistas para cada fecha
-        total_movies = sum(values)
+        total_peliculas = sum(values)
         
-        # Emite la cantidad total de películas vistas junto con la fecha
-        yield total_movies, date
+        yield total_peliculas, fecha
 
 
 
 if __name__ == '__main__':
-    LeastWatchedDayMR.run()
+    MenorCantidadPeli.run()

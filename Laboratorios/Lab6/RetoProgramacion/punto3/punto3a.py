@@ -1,36 +1,25 @@
 from mrjob.job import MRJob
 
 
-class MovieRatingsMR(MRJob):
+class CalificicacionPeli(MRJob):
 
     def mapper(self, _, line):
-        fields = line.split(',')
-        
-        # Extrae el ID del usuario, el ID de la película y la calificación de la línea
-        user_id = fields[0]
-        movie_id = fields[1]
-        rating = float(fields[2])
-        
-        # Emite el ID del usuario como clave y una tupla (1, rating) como valor
-        yield user_id, (1, rating)
+        id_usuario,id_pelicula,calificacion,genero,fecha=line.split(',')
 
-    def reducer(self, user_id, values):
-        # Inicializa variables para contar el número de películas y calcular la suma de calificaciones
+        yield id_usuario, (1, float(calificacion))
+
+    def reducer(self, id_usuario, values):
         movie_count = 0
-        rating_sum = 0
-        
-        # Recorre los valores y realiza la sumatoria de películas y calificaciones
+        calificacion_sum = 0
+        # Recorre valores 
         for value in values:
             movie_count += value[0]
-            rating_sum += value[1]
-        
-        # Calcula el valor promedio de calificación
-        average_rating = rating_sum / movie_count
-        
-        # Emite el ID del usuario junto con el número de películas y el valor promedio de calificación
-        yield user_id, (movie_count, average_rating)
+            calificacion_sum += value[1]
+        average_calificacion = calificacion_sum / movie_count
+
+        yield id_usuario, (movie_count, average_calificacion)
 
 
 
 if __name__ == '__main__':
-    MovieRatingsMR.run()
+    CalificicacionPeli.run()

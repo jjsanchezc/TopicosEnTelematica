@@ -4,27 +4,20 @@ from mrjob.job import MRJob
 class BestRatingDayMR(MRJob):
     def mapper(self, _, line):
         fields = line.split(',')
-        
-        # Extrae la fecha y el rating de la línea
-        date = fields[4]
-        rating = float(fields[2])
-        
-        yield date, rating # Emite la fecha como clave y el rating como valor
+        # Extrae la fecha y el calificacion de la línea
+        fecha = fields[4]
+        calificacion = float(fields[2])
+        yield fecha, calificacion
     
-    def reducer(self, date, ratings):
-        rating_sum = 0 #rating promedio 
-        rating_count = 0
-        
-        # Recorre los ratings y realiza la sumatoria y el conteo
-        for rating in ratings:
-            rating_sum += rating
-            rating_count += 1
-        
-        # Calcula el rating promedio
-        average_rating = rating_sum / rating_count
-        
-        # Emite el rating promedio junto con la fecha
-        yield average_rating, date
+    def reducer(self, fecha, calificacions):
+        calificacion_sum = 0
+        calificacion_count = 0
+        # Recorre para hacer sumatoria
+        for calificacion in calificacions:
+            calificacion_sum += calificacion
+            calificacion_count += 1
+        average_calificacion = calificacion_sum / calificacion_count
+        yield average_calificacion, fecha
 
 
 if __name__ == '__main__':

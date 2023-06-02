@@ -1,30 +1,24 @@
 from mrjob.job import MRJob
 
 
-class WorstRatingDayMR(MRJob):
+class DiaPeorPromCali(MRJob):
     def mapper(self, _, line):
-        fields = line.split(',')
-        
-        # Extrae la fecha y el rating de la línea
-        date = fields[4]
-        rating = float(fields[2])
-        
-        yield date, rating # Emite la fecha como clave y el rating como valor
+        id_usuario,id_pelicula,calificacion,genero,fecha=line.split(',')
+        yield fecha, float(calificacion) # Emite la fecha como clave y el calificacion como valor
 
-    def reducer(self, date, ratings):
-        rating_sum = 0
-        rating_count = 0
+    def reducer(self, fecha, calificaciones):
+        calificacion_sum = 0
+        calificacion_count = 0
         
-        # Recorre los ratings y realiza la sumatoria y el conteo
-        for rating in ratings:
-            rating_sum += rating
-            rating_count += 1
+        for calificacion in calificaciones:
+            calificacion_sum += calificacion
+            calificacion_count += 1
         
-        average_rating = rating_sum / rating_count # Calcula el rating promedio
+        average_calificacion = calificacion_sum / calificacion_count # Calcula el calificacion promedio
         
-        yield average_rating, date # Emite el rating promedio junto con la fecha
+        yield average_calificacion, fecha # Emite el calificacion promedio junto con la fecha
 
 
 
 if __name__ == '__main__':
-    WorstRatingDayMR.run()
+    DiaPeorPromCali.run()
