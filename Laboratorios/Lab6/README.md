@@ -4,7 +4,7 @@
 
 1. [Laboratorio Parte1](#lab1)
 2. [Laboratorio Parte2](#lab2)
-4. [Reto de programación en Map/Reduce](#reto)
+4. [Reto de programación en Map/Reduce](RetoProgramacion/README.md)
 5. [Referencias](#ref)
 
 ***
@@ -81,6 +81,7 @@ aws emr create-cluster \
 ***
     
 <div id='lab2'>
+
 # 2.Conexión Main node del cluster
 
 ## conexión
@@ -164,8 +165,12 @@ proceso de ejecución y respuesta:
 
 ## para poder organizar mejor el README.md se decidió partirlo, para ver esta parte click en [ver](RetoProgramacion/README.md)
 
+***
+    
 <div id='ref'>
+    
 ## Referencias 
+
 https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html <br>
 PDF-Laboratorio-N6-Crear Cluster EMR-Hadoop <br>
 https://docs.aws.amazon.com/es_es/cli/latest/userguide/cli-services-s3-commands.html <br>
