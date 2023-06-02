@@ -1,11 +1,22 @@
 # Laboratorio / Reto: Map/Reduce en Python con MRJOB
 
-## menu de siempre
+**Tabla de Contenido**
 
+1. [Laboratorio Parte1](#lab1)
+2. [Laboratorio Parte2](#lab2)
+4. [Reto de programación en Map/Reduce](#reto)
+5. [Referencias](#ref)
 
 ***
-## 1. Creación ClusterEMR con CLI
+
+<div id='lab1'>
+    
+# Laboratorio / Reto: Map/Reduce en Python con MRJOB
+    
+# 1. Creación ClusterEMR con CLI
+    
 ## Descargar el CLI
+    
 - Primero se descarga el CLI desde la pagina de AWS 
 
 ![descarga](imagenes/descargando_CLI.png)
@@ -17,23 +28,19 @@
 ## Crear un S3
 - Existen 2 formas de hacerlo la pagina de AWS o el CLI
 
-### AWS
-
-![createS3](imagenes/s3.png)
-
 ### CLI
 Para este lab se creó un s3 llamado `lab-reto-jjsanchezc`
 ```
 aws s3 mb s3://lab-reto-jjsanchezc
 ```
-***
+    
 si queremos ver que se creó correctamente podemos usar el comando 
 ```
 aws s3 ls
 ```
 o podemos verlo en aws como 
 
-![s3existentes](imagenes/existencia_s3.png)
+![s3existentes](imagenes/s3.png)
 
 ## Key Pairs
 - Para los pares de clave se utilizará la llave creada en el lab anterior, la cual se llama `"emr-key.pem"`
@@ -72,6 +79,8 @@ aws emr create-cluster \
 ![cluster_emr2_res](imagenes/resultados_cluster_emr2.png)
 
 ***
+    
+<div id='lab2'>
 # 2.Conexión Main node del cluster
 
 ## conexión
@@ -118,7 +127,6 @@ Y sus resultados deberian ser:
 
 ![wordcount-mr](imagenes/resultado_wordcount-mr2.png)
 
-Para terminar,debemos que copiar el dataset en el emr y luego hacer el comando:
 
 crear carpeta en hdfs 
 
@@ -150,10 +158,13 @@ proceso de ejecución y respuesta:
 
 ***
 
+<div id='reto'>
+    
 # Reto de programación en Map/Reduce
 
 ## para poder organizar mejor el README.md se decidió partirlo, para ver esta parte click en [ver](RetoProgramacion/README.md)
 
+<div id='ref'>
 ## Referencias 
 https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html <br>
 PDF-Laboratorio-N6-Crear Cluster EMR-Hadoop <br>
