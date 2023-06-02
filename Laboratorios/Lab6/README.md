@@ -19,7 +19,7 @@
 
 ### AWS
 
-![createS3](imagenes/S3-desde_AWS.png)
+![createS3](imagenes/s3.png)
 
 ### CLI
 Para este lab se creó un s3 llamado `lab-reto-jjsanchezc`

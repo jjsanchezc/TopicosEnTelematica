@@ -62,13 +62,13 @@ y su resultado es:
 
 ![respuesta1](../imagenes/respuesta1b.png)
 
-***
-
 para poder ver el resultado hay que ejecutar el comando:
 
 ```
 hdfs dfs -cat /user/admin/punto1/punto1b/*
 ```
+
+***
 
 ### Punto1c
 Número de SE por Empleado que ha tenido a lo largo de la estadística <br>
@@ -83,13 +83,13 @@ y su resultado es:
 
 ![respuesta1](../imagenes/respuesta1c.png)
 
-***
-
 para poder ver el resultado hay que ejecutar el comando:
 
 ```
 hdfs dfs -cat /user/admin/punto1/punto1c/*
 ```
+
+***
 
 # Punto2
 
@@ -115,13 +115,14 @@ y su resultado es:
 
 ![respuesta2a](../imagenes/respuesta2a.png)
 
-***
-
 para poder ver el resultado hay que ejecutar el comando:
 
 ```
 hdfs dfs -cat /user/admin/punto2/punto2a/*
 ```
+
+***
+
 ### Punto2b
 Listado de acciones que siempre han subido o se mantienen estables <br>
 si desea ver el [codigo](RetoProgramacion/punto2/punto2b.py) <br>
@@ -135,13 +136,14 @@ y su resultado es:
 
 ![respuesta2b](../imagenes/respuesta2b.png)
 
-***
-
 para poder ver el resultado hay que ejecutar el comando:
 
 ```
 hdfs dfs -cat /user/admin/punto2/punto2b/*
 ```
+
+***
+
 ### Punto2c
 DIA NEGRO: Saque el día en el que la mayor cantidad de acciones tienen el menor valor de acción (DESPLOME), suponga una inflación independiente del tiempo. <br>
 si desea ver el [codigo](RetoProgramacion/punto2/punto2c.py) <br>
@@ -155,13 +157,14 @@ y su resultado es:
 
 ![respuesta2c](../imagenes/respuesta2c.png)
 
-***
-
 para poder ver el resultado hay que ejecutar el comando:
 
 ```
 hdfs dfs -cat /user/admin/punto2/punto2c/*
 ```
+
+***
+
 # Punto3
 Sistema de evaluación de películas: Se tiene un conjunto de datos en el cual se evalúan las películas con un rating. Ver su [dataset.txt](RetoProgramacion/punto3/dataset.txt) <br>
 
@@ -185,13 +188,14 @@ y su resultado es:
 
 ![respuesta3a](../imagenes/respuesta3a.png)
 
-***
-
 para poder ver el resultado hay que ejecutar el comando:
 
 ```
 hdfs dfs -cat /user/admin/punto3/punto3a/*
 ```
+
+***
+
 ### Punto3b
 Día en que más películas se han visto <br>
 si desea ver el [codigo](RetoProgramacion/punto3/punto3b.py) <br>
