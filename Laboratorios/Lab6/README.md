@@ -119,16 +119,20 @@ Y sus resultados deberian ser:
 Para terminar,debemos que copiar el dataset en el emr y luego hacer el comando:
 
 crear carpeta en hdfs 
-````
+
+```
 hdfs dfs -mkdir /user/admin/
 ```
 
+copiamos el dataset en el hdfs y ejecutamos
 
 ```
 hdfs dfs -copyFromLocal /home/hadoop/st0263-2023-1/datasets/ /user/admin/
 python wordcount-mr.py hdfs:///user/admin/datasets/gutenberg-small/*.txt -r hadoop --output-dir hdfs:///user/admin/result3
 ```
+
 para ver los resultados en el result 
+
 ```
 hdfs dfs -cat /user/admin/result3/*
 ```
@@ -136,6 +140,7 @@ hdfs dfs -cat /user/admin/result3/*
 ***
 
 # Reto de programación en Map/Reduce
+
 ## para poder organizar mejor el README.md se decidió partirlo, para ver esta parte click en [ver](RetoProgramacion/README.md)
 
 ## Referencias 
