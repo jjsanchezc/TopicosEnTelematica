@@ -22,9 +22,9 @@
 ![createS3](imagenes/S3-desde_AWS.png)
 
 ### CLI
-Para este lab se creó un s3 llamado `jjsanchezc-lab-emr`
+Para este lab se creó un s3 llamado `lab-reto-jjsanchezc`
 ```
-aws s3 mb s3://jjsanchezc-lab-emr
+aws s3 mb s3://lab-reto-jjsanchezc
 ```
 ***
 si queremos ver que se creó correctamente podemos usar el comando 
@@ -55,8 +55,10 @@ aws emr create-cluster \
 `--service-role` Especifica el rol de servicio de IAM <br>
 `--ec2-attributes`Configuraciones de instancias de clúster y Amazon EC2.<br>
 `--name` Nombre del cluster <br>
-`--applications` Aplicaciónes que se van a instalar en el cluster  `no se si ponerlo`     --applications Name=Hue Name=Spark Name=Hadoop Name=Sqoop Name=Hive \<br>
+`--log-uri` <br>
+`--applications` Aplicaciónes que se van a instalar en el cluster\<br>
 `--instance-group` Especifica el numero y el tipo de instancias EC2 que se van a crear, aparte del rol que estas van a tomar, sea "MASTER", "CORE" ó "TASK" <br>
+`--no-termination-protected` <br>
 
 ### Resultados 
 - ### EC2
@@ -136,6 +138,15 @@ para ver los resultados en el result
 ```
 hdfs dfs -cat /user/admin/result3/*
 ```
+proceso de ejecución y respuesta: 
+
+![inicio](imagenes/inicio.png)
+
+![progreso1](imagenes/map-reduce0.png)
+
+![progreso2](imagenes/map100-reduce-0.png)
+
+![result](imagenes/respuestamap.png)
 
 ***
 

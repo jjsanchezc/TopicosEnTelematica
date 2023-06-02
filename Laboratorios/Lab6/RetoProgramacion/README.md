@@ -39,7 +39,7 @@ python punto1a.py hdfs:///user/admin/punto1/dataset.txt -r hadoop --output-dir h
 
 y su resultado es:
 
-![respuesta1](imagenes/respuesta1a.png)
+![respuesta1](../imagenes/respuesta1a.png)
 
 para poder ver el resultado hay que ejecutar el comando:
 
@@ -60,7 +60,7 @@ python punto1b.py hdfs:///user/admin/punto1/dataset.txt -r hadoop --output-dir h
 
 y su resultado es:
 
-![respuesta1](imagenes/respuesta1b.png)
+![respuesta1](../imagenes/respuesta1b.png)
 
 ***
 
@@ -81,7 +81,7 @@ python punto1c.py hdfs:///user/admin/punto1/dataset.txt -r hadoop --output-dir h
 
 y su resultado es:
 
-![respuesta1](imagenes/respuesta1c.png)
+![respuesta1](../imagenes/respuesta1c.png)
 
 ***
 
@@ -113,7 +113,7 @@ python punto2a.py hdfs:///user/admin/punto2/dataset.txt -r hadoop --output-dir h
 
 y su resultado es:
 
-![respuesta2a](imagenes/respuesta2a.png)
+![respuesta2a](../imagenes/respuesta2a.png)
 
 ***
 
@@ -133,7 +133,7 @@ python punto2b.py hdfs:///user/admin/punto2/dataset.txt -r hadoop --output-dir h
 
 y su resultado es:
 
-![respuesta2b](imagenes/respuesta2b.png)
+![respuesta2b](../imagenes/respuesta2b.png)
 
 ***
 
@@ -153,7 +153,7 @@ python punto2c.py hdfs:///user/admin/punto2/dataset.txt -r hadoop --output-dir h
 
 y su resultado es:
 
-![respuesta2c](imagenes/respuesta2c.png)
+![respuesta2c](../imagenes/respuesta2c.png)
 
 ***
 
@@ -183,7 +183,7 @@ python punto3a.py hdfs:///user/admin/punto3/dataset.txt -r hadoop --output-dir h
 
 y su resultado es:
 
-![respuesta3a](imagenes/respuesta3a.png)
+![respuesta3a](../imagenes/respuesta3a.png)
 
 ***
 
@@ -203,7 +203,7 @@ python punto3b.py hdfs:///user/admin/punto3/dataset.txt -r hadoop --output-dir h
 
 y su resultado es:
 
-![respuesta3b](imagenes/respuesta3b.png)
+![respuesta3b](../imagenes/respuesta3b.png)
 
 para poder ver el resultado hay que ejecutar el comando:
 
@@ -224,7 +224,7 @@ python punto3c.py hdfs:///user/admin/punto3/dataset.txt -r hadoop --output-dir h
 
 y su resultado es:
 
-![respuesta3c](imagenes/respuesta3c.png)
+![respuesta3c](../imagenes/respuesta3c.png)
 
 para poder ver el resultado hay que ejecutar el comando:
 
@@ -245,7 +245,7 @@ python punto3d.py hdfs:///user/admin/punto3/dataset.txt -r hadoop --output-dir h
 
 y su resultado es:
 
-![respuesta3d](imagenes/respuesta3d.png)
+![respuesta3d](../imagenes/respuesta3d.png)
 
 para poder ver el resultado hay que ejecutar el comando:
 
@@ -266,7 +266,7 @@ python punto3e.py hdfs:///user/admin/punto3/dataset.txt -r hadoop --output-dir h
 
 y su resultado es:
 
-![respuesta3e](imagenes/respuesta3e.png)
+![respuesta3e](../imagenes/respuesta3e.png)
 
 para poder ver el resultado hay que ejecutar el comando:
 
@@ -287,7 +287,7 @@ python punto3f.py hdfs:///user/admin/punto3/dataset.txt -r hadoop --output-dir h
 
 y su resultado es:
 
-![respuesta3f](imagenes/respuesta3f.png)
+![respuesta3f](../imagenes/respuesta3f.png)
 
 para poder ver el resultado hay que ejecutar el comando:
 
@@ -308,7 +308,7 @@ python punto3g.py hdfs:///user/admin/punto3/dataset.txt -r hadoop --output-dir h
 
 y su resultado es:
 
-![respuesta3g](imagenes/respuesta3g.png)
+![respuesta3g](../imagenes/respuesta3g.png)
 
 para poder ver el resultado hay que ejecutar el comando:
 
